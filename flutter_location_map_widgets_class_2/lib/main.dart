@@ -158,11 +158,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 LatLng(24.462366675440375, 89.70871717947436),
               ]),
         },
-        //circle-give circular area of a given lat-lng, we can use multiple circle but make sure id is different unless all of the circle become stack and visible only last circle
+
+
+        //circle-give circular area of a given lat-lng, we can use multiple circle but make sure id is different unless all of the circle become stack and visible only last circle.add circle at our 3 marker
         circles: <Circle>{
+          //add circle at Sirajganj govt. college
           Circle(circleId: CircleId('demo'),
-            center: LatLng(24.462366675440375, 89.70871717947436),
+            center: LatLng(24.462366675440375, 89.70871717947436),//add circle at Sirajganj govt. college
             radius: 300,
+            visible: true, //by default true
             strokeColor: Colors.purple, //circular area rounded color
             strokeWidth: 3,//circular area rounded color width
             fillColor: Colors.purple.shade100, // inside color of circle, make it transparent by .shade100 so that data of map inside  the circle can visible
@@ -170,7 +174,37 @@ class _HomeScreenState extends State<HomeScreen> {
             print("Tapped on Circle");
             },
           ),
+
+
+          //add circle at Women college
+          Circle(circleId: CircleId('demo-2'),
+            center: LatLng(24.46502911924947, 89.70618009567262),//rashiduzzoha women college
+            radius: 300,
+            visible: true, //by default true
+            strokeColor: Colors.purple, //circular area rounded color
+            strokeWidth: 3,//circular area rounded color width
+            fillColor: Colors.purple.shade100, // inside color of circle, make it transparent by .shade100 so that data of map inside  the circle can visible
+            onTap: (){
+              print("Tapped on Circle");
+            },
+          ),
+          //add circle at NorthBengal Medical college
+          Circle(circleId: CircleId('demo-3'),
+            center: LatLng(24.4604486599282, 89.71615991524304),//add circle at North Bengal Medical college
+            radius: 300,
+            visible: true, //by default true
+            strokeColor: Colors.purple, //circular area rounded color
+            strokeWidth: 3,//circular area rounded color width
+            fillColor: Colors.purple.shade100, // inside color of circle, make it transparent by .shade100 so that data of map inside  the circle can visible
+            onTap: (){
+              print("Tapped on Circle");
+            },
+          ),
         },
+
+
+
+
       ),
     );
   }
