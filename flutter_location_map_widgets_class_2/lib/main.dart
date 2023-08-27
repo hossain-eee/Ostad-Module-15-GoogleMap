@@ -33,9 +33,13 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: const GoogleMap(
         initialCameraPosition: CameraPosition(
-          target: LatLng(24.605169371098192, 89.64165685434453),
+          //most use able is zoom, we use default value for bearing and tilt
+          zoom: 15,//standard value 15-17, 17 for location oriented suppose office location
+          bearing: 30, //map angel from north to clockwise direction
+          tilt: 10,//camera angel
+          target: LatLng(24.462366675440375, 89.70871717947436),
         ),
-      ), //Tarakandi school lat and lang
+      ), //Sirajganj Govt. college lat and lang
     );
   }
 }
