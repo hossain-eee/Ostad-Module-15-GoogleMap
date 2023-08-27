@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("Google Map Screen"),
       ),
-      body: const GoogleMap(
+      body:  const GoogleMap(
         initialCameraPosition: CameraPosition(
           //most use able is zoom, we use default value for bearing and tilt
           zoom: 15,//standard value 15-17, 17 for location oriented suppose office location
@@ -41,7 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         myLocationEnabled: true, //default is false
         myLocationButtonEnabled: true,
-
+        zoomControlsEnabled: true,//by default true; it give facility to zoom in or zoom out
+        zoomGesturesEnabled: true, // by default true; it give facility to click on a position and zoom it
+        trafficEnabled: true,// by default false; to see people or vehicle in road that road is free or has jam
       ),
     );
   }
