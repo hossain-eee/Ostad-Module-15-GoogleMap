@@ -1,16 +1,35 @@
 # flutter_location_map_widgets_class_1
+### Map setup 
+Use package google_maps_flutter
+Readme in google maps flutter package(documentation)
 
-A new Flutter project.
+Set the minSdkVersion in android/app/build.gradle:
 
-## Getting Started
+android {
+    
+    compileSdkVersion 33 //default is 16
+    
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    defaultConfig {
+      
+        minSdkVersion 20 //default is 16
+        targetSdkVersion 33
+        
+    }
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   
+}
+
+### Put API inside Manifest file
+
+inside Application tag
+ 
+    <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="YOUR KEY HERE"/>
+               
+
+### OutPut
+
+![map](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/4e2d6532-107b-4e38-a94c-7087dae720c9)
