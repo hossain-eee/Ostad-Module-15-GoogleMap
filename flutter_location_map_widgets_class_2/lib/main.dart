@@ -25,13 +25,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late final GoogleMapController _googleMapController;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Google Map Screen"),
       ),
-      body:  const GoogleMap(
+      body:   GoogleMap(
         initialCameraPosition: CameraPosition(
           //most use able is zoom, we use default value for bearing and tilt
           zoom: 15,//standard value 15-17, 17 for location oriented suppose office location
@@ -43,7 +44,14 @@ class _HomeScreenState extends State<HomeScreen> {
         myLocationButtonEnabled: true,
         zoomControlsEnabled: true,//by default true; it give facility to zoom in or zoom out
         zoomGesturesEnabled: true, // by default true; it give facility to click on a position and zoom it
-        trafficEnabled: true,// by default false; to see people or vehicle in road that road is free or has jam
+        trafficEnabled: false,// by default false; to see people or vehicle in road that road is free or has jam
+        onMapCreated: (GoogleMapController  controller){
+          //onMapCreated return controller, we can control the map by this controller, like zoom,move map etc
+          
+          print("On Map Created");
+          _googleMapController=controller; //
+
+        },
       ),
     );
   }
