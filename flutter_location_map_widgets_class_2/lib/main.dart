@@ -52,6 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
           _googleMapController=controller; //
 
         },
+        compassEnabled: true, // by default true; compass inside a circular radius
+
+
       ),
     );
   }
