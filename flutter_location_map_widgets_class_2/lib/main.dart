@@ -113,6 +113,28 @@ class _HomeScreenState extends State<HomeScreen> {
               }
           ),
         },
+        //polyline use to draw strait line between two area
+        polylines: <Polyline>{
+          Polyline(polylineId: PolylineId('polyline'),
+          color: Colors.pink,
+            width: 5,
+            //jointType is start or joint tow lines make is round
+            // jointType: JointType.mitered,
+            jointType: JointType.round,
+            onTap: (){
+            print("Tapped on Polyline");
+            },
+              //add our three marker with the polylines
+            points: [
+              //first latlng to second, second to third, third to first
+              LatLng(24.462366675440375, 89.70871717947436),
+              LatLng(24.46502911924947, 89.70618009567262),
+              LatLng(	24.4604486599282, 89.71615991524304),
+              LatLng(24.462366675440375, 89.70871717947436),
+            ]
+
+          ),
+        },
 
       ),
     );
