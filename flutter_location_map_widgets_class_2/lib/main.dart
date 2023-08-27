@@ -67,7 +67,23 @@ class _HomeScreenState extends State<HomeScreen> {
         // mapType: MapType.satellite,
         // mapType: MapType.hybrid, //(both satellite and normal view)
         // mapType: MapType.terrain,
-
+        
+        //we can add multiple markers but id should different unless, we will see only last marker it will become stack on each other
+        markers:  <Marker>{
+           Marker(markerId: const MarkerId('custom-marker'),
+            position: const LatLng(24.462366675440375, 89.70871717947436),
+            icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue), // marker icon, it could be anything, like cat, cow any thing
+             infoWindow: const InfoWindow(title: "College"), // when click on marker then show this title of marker
+             draggable: false,//by default false
+             // draggable: true, // drag the marker one place to another
+             onDragStart: (LatLng latlng){
+                print(latlng);
+             },
+             onDragEnd: (LatLng latlng){
+              print(latlng);
+             }
+          )
+        },
       ),
     );
   }
