@@ -24,10 +24,11 @@ android {
 
 ### Put API inside Manifest file
 
-<manifest 
-  <application 
+inside Application tag
+ 
     <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="YOUR KEY HERE"/>
+               
 
 ### OutPut
 
