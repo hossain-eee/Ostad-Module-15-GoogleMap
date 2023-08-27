@@ -203,7 +203,24 @@ class _HomeScreenState extends State<HomeScreen> {
         },
 
 
+        //Polygon-used to define an area which has special case, like corona or dengue affected area
+        polygons: <Polygon>{
+           Polygon(polygonId: PolygonId('poly-id'),
+          fillColor: Colors.purple.shade400, //make color transparent so map text/area could visible
+           strokeWidth: 0,  //stroke looks ugly here so make it 0
+             onTap: (){
+             print("Polygon tapped");
+             },
 
+             points: const [
+               //set area of polygon, we can add many more latlng
+               LatLng(24.46121867033018, 89.70143392682076),
+               LatLng(24.455707567267474, 89.69457417726515),
+               LatLng(24.446473838787337, 89.70979705452919),
+               LatLng(24.45415289087343, 89.71224926412104),
+             ]
+          ),
+        },
 
       ),
     );
