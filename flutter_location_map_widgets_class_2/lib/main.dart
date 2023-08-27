@@ -37,9 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
           zoom: 15,//standard value 15-17, 17 for location oriented suppose office location
           bearing: 30, //map angel from north to clockwise direction
           tilt: 10,//camera angel
-          target: LatLng(24.462366675440375, 89.70871717947436),
+          target: LatLng(24.462366675440375, 89.70871717947436), //Sirajganj Govt. college lat and lang
         ),
-      ), //Sirajganj Govt. college lat and lang
+        myLocationEnabled: true, //default is false
+        myLocationButtonEnabled: true,
+
+      ),
     );
   }
 }
