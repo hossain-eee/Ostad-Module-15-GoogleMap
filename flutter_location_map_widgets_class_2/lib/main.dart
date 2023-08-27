@@ -54,6 +54,14 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         compassEnabled: true, // by default true; compass inside a circular radius
 
+          onTap: (LatLng latLng){
+          //it return LatLng on where user click inside the map
+          print("LatLng of click/press position inside the map is : $latLng");
+          },
+        onLongPress: (LatLng latLng){
+          //it return LatLng on where user Long press  inside the map
+          print("LatLng of  Long press position inside the map is : $latLng");
+        },
 
       ),
     );
