@@ -68,12 +68,12 @@ class _HomeScreenState extends State<HomeScreen> {
         // mapType: MapType.hybrid, //(both satellite and normal view)
         // mapType: MapType.terrain,
         
-        //we can add multiple markers but id should different unless, we will see only last marker it will become stack on each other
+        //we can add multiple Markers class inside the set but id should different unless, we will see only last marker it will become stack on each other
         markers:  <Marker>{
            Marker(markerId: const MarkerId('custom-marker'),
-            position: const LatLng(24.462366675440375, 89.70871717947436),
+            position: const LatLng(24.462366675440375, 89.70871717947436), //sirajganj govt college
             icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue), // marker icon, it could be anything, like cat, cow any thing
-             infoWindow: const InfoWindow(title: "College"), // when click on marker then show this title of marker
+             infoWindow: const InfoWindow(title: "D.College"), // when click on marker then show this title of marker
              draggable: false,//by default false
              // draggable: true, // drag the marker one place to another
              onDragStart: (LatLng latlng){
@@ -82,8 +82,38 @@ class _HomeScreenState extends State<HomeScreen> {
              onDragEnd: (LatLng latlng){
               print(latlng);
              }
-          )
+          ),
+
+          //we can add multiple Markers class inside the set but id should different unless, we will see only last marker it will become stack on each other
+          Marker(markerId: const MarkerId('custom-marker-2'),
+              position: const LatLng(24.46502911924947, 89.70618009567262), //Rashidozzoha Women's college
+              icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRose), // marker icon, it could be anything, like cat, cow any thing
+              infoWindow: const InfoWindow(title: "W.College"), // when click on marker then show this title of marker
+              draggable: false,//by default false
+              // draggable: true, // drag the marker one place to another
+              onDragStart: (LatLng latlng){
+                print(latlng);
+              },
+              onDragEnd: (LatLng latlng){
+                print(latlng);
+              }
+          ),
+
+          Marker(markerId: const MarkerId('custom-marker-3'),
+              position: const LatLng(	24.4604486599282, 89.71615991524304), //north bengal medical college
+              icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange), // marker icon, it could be anything, like cat, cow any thing
+              infoWindow: const InfoWindow(title: "N.M.College"), // when click on marker then show this title of marker
+              draggable: false,//by default false
+              // draggable: true, // drag the marker one place to another
+              onDragStart: (LatLng latlng){
+                print(latlng);
+              },
+              onDragEnd: (LatLng latlng){
+                print(latlng);
+              }
+          ),
         },
+
       ),
     );
   }
