@@ -62,6 +62,11 @@ class _HomeScreenState extends State<HomeScreen> {
           //it return LatLng on where user Long press  inside the map
           print("LatLng of  Long press position inside the map is : $latLng");
         },
+        mapType: MapType.normal,
+        // mapType: MapType.none, // no map, no data will display
+        // mapType: MapType.satellite,
+        // mapType: MapType.hybrid, //(both satellite and normal view)
+        // mapType: MapType.terrain,
 
       ),
     );
