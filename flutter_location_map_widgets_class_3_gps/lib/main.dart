@@ -35,9 +35,19 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   //set data track condition
-  void initialize() {
-    print("initialize-start");
+  void initialize() async{
+    
+     //get the permission, this permission is rquired first loading page that mean inside initState(), otherwise error will through (i faced)
+    await Location.instance.requestPermission().then((requestPermission) {
+      print("Request to the user permission: $requestPermission");
+    });
+    //check the permission is available or not (status)
+    await Location.instance.hasPermission().then((permissionStatus) {
+      print("Is user give permission : $permissionStatus");
+    });
+    
     // instance is the singleton (single object for all) for location class, so if we apply it inside initState() then it will apply for all the method where apply this Location.instance
+    
     Location.instance.changeSettings(
       distanceFilter: 5, //meter
       // accuracy:LocationAccuracy.navigation, // walking track
@@ -49,14 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   //get current location
   void getMyLocation() async {
-    //get the permission
-    await Location.instance.requestPermission().then((requestPermission) {
-      print("Request to the user permission: $requestPermission");
-    });
-    //check the permission is available or not (status)
-    await Location.instance.hasPermission().then((permissionStatus) {
-      print("Is user give permission : $permissionStatus");
-    });
+  
     //fetch the current location
     myCurrentLocation = await Location.instance.getLocation();
     print("My current Location is : $myCurrentLocation");
