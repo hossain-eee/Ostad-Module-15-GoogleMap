@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   //set data track condition
   void initialize() async{
     
-     //get the permission, this permission is rquired first loading page that mean inside initState(), otherwise error will through (i faced)
+     //get the permission, this permission is rquired first loading page that mean inside initState() it take user permission when open app, otherwise error will through (i faced)
     await Location.instance.requestPermission().then((requestPermission) {
       print("Request to the user permission: $requestPermission");
     });
