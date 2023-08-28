@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 
@@ -25,7 +27,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   LocationData? myCurrentLocation;
-
+  StreamSubscription? _locationSubscription;
   //get current location
   void getMyLocation() async {
     //get the permission
@@ -46,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   //Listen to my location that mean track user activity
   void listenToMyLocation() async{
-    Location.instance.onLocationChanged.listen((location) {
+    _locationSubscription = Location.instance.onLocationChanged.listen((location) {
       myCurrentLocation=location; //myCurrentLocation got latest data from listen
       print('listening to location $location');
       if(mounted){
@@ -55,6 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       }
     });
+  }
+
+  //stop listening
+  void stopToListenLocation() async{
+    //to cancel the stream first need to use common instance for both listening and stop listening, that is why this instance got data from listen
+    _locationSubscription?.cancel();
   }
 
   @override
@@ -85,7 +93,14 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: Icon(Icons.location_on),
           ),
-          SizedBox(width: 20,),
+          SizedBox(width: 16,),
+          FloatingActionButton(
+            onPressed: () {
+              stopToListenLocation();
+            },
+            child: const Icon(Icons.stop_circle_outlined),
+          ),
+          SizedBox(width: 16,),
           FloatingActionButton(
             onPressed: () {
               //get current location
@@ -93,9 +108,16 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: Icon(Icons.my_location),
           ),
-          SizedBox(width: 20,),
+
         ],
       ),
     );
+  }
+  //when create controller, its best practice to cancel/close it
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _locationSubscription?.cancel();
+    super.dispose();
   }
 }
