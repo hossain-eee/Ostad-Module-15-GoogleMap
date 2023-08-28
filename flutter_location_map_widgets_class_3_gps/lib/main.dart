@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 
@@ -28,6 +27,26 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   LocationData? myCurrentLocation;
   StreamSubscription? _locationSubscription;
+
+  @override
+  void initState() {
+    initialize();
+    super.initState();
+  }
+
+  //set data track condition
+  void initialize() {
+    print("initialize-start");
+    // instance is the singleton (single object for all) for location class, so if we apply it inside initState() then it will apply for all the method where apply this Location.instance
+    Location.instance.changeSettings(
+      distanceFilter: 5, //meter
+      // accuracy:LocationAccuracy.navigation, // walking track
+      accuracy: LocationAccuracy.high,
+      interval: 3000, // 3 second
+    );
+    print("initialize-end");
+  }
+
   //get current location
   void getMyLocation() async {
     //get the permission
@@ -47,26 +66,28 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   //Listen to my location that mean track user activity
-  void listenToMyLocation() async{
-    _locationSubscription = Location.instance.onLocationChanged.listen((location) {
-      myCurrentLocation=location; //myCurrentLocation got latest data from listen
+  void listenToMyLocation() {
+    _locationSubscription =
+        Location.instance.onLocationChanged.listen((location) {
+      myCurrentLocation =
+          location; //myCurrentLocation got latest data from listen
       print('listening to location $location');
-      if(mounted){
-        setState(() {
-
-        });
+      if (mounted) {
+        setState(() {});
       }
     });
+    // initialize();
   }
 
   //stop listening
-  void stopToListenLocation() async{
+  void stopToListenLocation() {
     //to cancel the stream first need to use common instance for both listening and stop listening, that is why this instance got data from listen
     _locationSubscription?.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("GPS Location"),
@@ -85,35 +106,44 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-
           FloatingActionButton(
             onPressed: () {
               //get latest location by listen user activity
-              listenToMyLocation() ;
+              listenToMyLocation();
             },
-            child: Icon(Icons.location_on),
+            // child: Icon(Icons.location_on),
+            child: Text('listen'),
           ),
-          SizedBox(width: 16,),
+          SizedBox(
+            width: 16,
+          ),
           FloatingActionButton(
             onPressed: () {
               stopToListenLocation();
             },
-            child: const Icon(Icons.stop_circle_outlined),
+            // child: const Icon(Icons.stop_circle_outlined),
+            child: Text('stop'),
           ),
-          SizedBox(width: 16,),
+          SizedBox(
+            width: 16,
+          ),
           FloatingActionButton(
             onPressed: () {
               //get current location
               getMyLocation();
             },
-            child: Icon(Icons.my_location),
+            // child: Icon(Icons.my_location),
+            child: const FittedBox(
+              child: Text('Location'),
+            ),
           ),
-
         ],
       ),
     );
+
   }
-  //when create controller, its best practice to cancel/close it
+
+//when create stream objecct, its best practice to cancel/close it
   @override
   void dispose() {
     // TODO: implement dispose
