@@ -1,16 +1,6 @@
 # gps_location_class_3_gps
 
-A new Flutter project.
+### output
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![1  current location](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/9e948f0e-dd20-4d77-80c5-7b674a325db4)
+![2  Permission](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/c270ce80-3d9b-4326-8332-4039138dff93)
