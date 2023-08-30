@@ -1,10 +1,10 @@
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.14)
-project(gps_location_class_3_gps LANGUAGES CXX)
+project(flutter_location_map_widgets_class_3_gps LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
-set(BINARY_NAME "gps_location_class_3_gps")
+set(BINARY_NAME "flutter_location_map_widgets_class_3_gps")
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.

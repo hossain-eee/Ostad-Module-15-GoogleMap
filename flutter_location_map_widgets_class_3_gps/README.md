@@ -1,6 +1,6 @@
-# gps_location_class_3_gps
+# flutter_location_map_widgets_class_3_gps
 
-A new Flutter project.
+gps location
 
 ## Getting Started
 

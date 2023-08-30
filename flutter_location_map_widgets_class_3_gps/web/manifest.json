@@ -1,11 +1,11 @@
 {
-    "name": "gps_location_class_3_gps",
-    "short_name": "gps_location_class_3_gps",
+    "name": "flutter_location_map_widgets_class_3_gps",
+    "short_name": "flutter_location_map_widgets_class_3_gps",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "gps location",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

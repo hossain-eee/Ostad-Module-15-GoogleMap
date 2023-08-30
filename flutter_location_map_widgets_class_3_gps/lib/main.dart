@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   LocationData? myCurrentLocation;
   StreamSubscription? _locationSubscription;
 
+
   @override
   void initState() {
     initialize();
@@ -35,20 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   //set data track condition
-  void initialize() {
-    print("initialize-start");
-    // instance is the singleton (single object for all) for location class, so if we apply it inside initState() then it will apply for all the method where apply this Location.instance
-    Location.instance.changeSettings(
-      distanceFilter: 5, //meter
-      // accuracy:LocationAccuracy.navigation, // walking track
-      accuracy: LocationAccuracy.high,
-      interval: 3000, // 3 second
-    );
-    print("initialize-end");
-  }
-
-  //get current location
-  void getMyLocation() async {
+  void initialize() async{
     //get the permission
     await Location.instance.requestPermission().then((requestPermission) {
       print("Request to the user permission: $requestPermission");
@@ -57,6 +45,19 @@ class _HomeScreenState extends State<HomeScreen> {
     await Location.instance.hasPermission().then((permissionStatus) {
       print("Is user give permission : $permissionStatus");
     });
+    print("initialize-start");
+    // instance is the singleton (single object for all) for location class, so if we apply it inside initState() then it will apply for all the method where apply this Location.instance
+    Location.instance.changeSettings(
+      distanceFilter: 1, //meter
+      // accuracy:LocationAccuracy.navigation, // walking track
+      accuracy: LocationAccuracy.high,
+      interval: 1000, // 3 second
+    );
+    print("initialize-end");
+  }
+
+  //get current location
+  void getMyLocation() async {
     //fetch the current location
     myCurrentLocation = await Location.instance.getLocation();
     print("My current Location is : $myCurrentLocation");
@@ -87,7 +88,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("GPS Location"),
@@ -140,7 +140,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
-
   }
 
 //when create stream objecct, its best practice to cancel/close it
