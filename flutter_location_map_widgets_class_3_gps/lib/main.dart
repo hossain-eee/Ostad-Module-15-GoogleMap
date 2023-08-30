@@ -37,7 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   //set data track condition
   void initialize() async{
+<<<<<<< HEAD
     //get the permission
+=======
+    
+     //get the permission, this permission is rquired first loading page that mean inside initState() it take user permission when open app, otherwise error will through (i faced)
+>>>>>>> 463b52db801754b5c15182434dda1e2dc9ecb89e
     await Location.instance.requestPermission().then((requestPermission) {
       print("Request to the user permission: $requestPermission");
     });
@@ -45,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
     await Location.instance.hasPermission().then((permissionStatus) {
       print("Is user give permission : $permissionStatus");
     });
+<<<<<<< HEAD
     print("initialize-start");
     // instance is the singleton (single object for all) for location class, so if we apply it inside initState() then it will apply for all the method where apply this Location.instance
     Location.instance.changeSettings(
@@ -52,12 +58,26 @@ class _HomeScreenState extends State<HomeScreen> {
       // accuracy:LocationAccuracy.navigation, // walking track
       accuracy: LocationAccuracy.high,
       interval: 1000, // 3 second
+=======
+    
+    // instance is the singleton (single object for all) for location class, so if we apply it inside initState() then it will apply for all the method where apply this Location.instance
+    
+    Location.instance.changeSettings(
+      distanceFilter: 5, //meter
+      // accuracy:LocationAccuracy.navigation, // walking track
+      accuracy: LocationAccuracy.high,
+      interval: 3000, // 3 second
+>>>>>>> 463b52db801754b5c15182434dda1e2dc9ecb89e
     );
     print("initialize-end");
   }
 
   //get current location
   void getMyLocation() async {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 463b52db801754b5c15182434dda1e2dc9ecb89e
     //fetch the current location
     myCurrentLocation = await Location.instance.getLocation();
     print("My current Location is : $myCurrentLocation");
