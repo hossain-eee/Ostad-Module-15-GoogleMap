@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
 
   LatLng location1 = LatLng(27.6602292, 85.308027);
   LatLng location2 = LatLng(27.6599592, 85.3102498);
- 
+  LatLng location_move_marker = LatLng(27.67831505697596, 85.29788810759783);//marker move to this location
   @override
   void initState() {
     addMarkers();
@@ -57,7 +57,24 @@ class _HomeState extends State<Home> {
     });
   }
 
+//move marker 
+ moveLocation2() {
+  /* Delete marker two which id is location2 and again create it at new position */
+    markers.removeWhere((marker) => marker.markerId.value == 'location2');//remove/delete marker which id is location2
+     //now add new marker at define postion, this marker will take 2nd marker id becasue we are delete and again creating second marker
+    markers.add(
+      Marker(
+        markerId: MarkerId('location2'),
+        // position: LatLng(27.661838, 85.308543),
+        position: location_move_marker,
+        icon: BitmapDescriptor.defaultMarker,
+      ),
+    );
 
+    setState(() {
+      // Refresh the map to show the new location for location 2
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +102,13 @@ class _HomeState extends State<Home> {
           });
         },
       ),
+       floatingActionButton: FloatingActionButton(
+        //marker move to new position
+         child: Text("Move"),
+         onPressed: () {
+           moveLocation2();
+         },
+       ),
     );
   }
 }
