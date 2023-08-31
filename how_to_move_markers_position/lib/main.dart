@@ -23,14 +23,19 @@ class _HomeState extends State<Home> {
   GoogleMapController? mapController; //contrller for Google map
   Set<Marker> markers = Set(); // or use {}
   // Set<Marker> markers = {};//
+  Set<Polyline> Polylines = {};
 
   LatLng location1 = LatLng(27.6602292, 85.308027);
   LatLng location2 = LatLng(27.6599592, 85.3102498);
   LatLng location_move_marker = LatLng(
       27.67831505697596, 85.29788810759783); //marker move to this location
   bool isLongPressToGetLatLngFromMap = false;
+  List<LatLng> points = []; //list for polyline location latlng store, to show all the marker movement point by polyline
+
   @override
   void initState() {
+    points
+        .add(location2); //initial first location or starting point of polyline
     addMarkers();
     super.initState();
   }
@@ -74,6 +79,17 @@ class _HomeState extends State<Home> {
         icon: BitmapDescriptor.defaultMarker,
       ),
     );
+    //add plyline
+    Polylines.add(Polyline(
+      polylineId: PolylineId('polyline1'),
+      color: Colors.blue,
+      width: 3,
+      /* points: [
+        location2,
+        location_move_marker,
+      ], */
+      points: points,
+    ));
     // camera/focus move according to latlng with latest location where move to marker
     mapController!.animateCamera(CameraUpdate.newLatLng(location_move_marker));
     setState(() {
@@ -96,8 +112,7 @@ class _HomeState extends State<Home> {
     ));
 
     //camera focus according to latlng also back with marker
-    mapController!.animateCamera(
-        CameraUpdate.newLatLng(location2));
+    mapController!.animateCamera(CameraUpdate.newLatLng(location2));
     setState(() {
       // Refresh the map to show markers
     });
@@ -130,6 +145,7 @@ class _HomeState extends State<Home> {
           }
         },
         markers: markers,
+        polylines: Polylines,
         mapType: MapType.normal,
         onMapCreated: (controller) {
           // Do something when the map is created
@@ -145,6 +161,10 @@ class _HomeState extends State<Home> {
           FloatingActionButton(
             child: Text("Move"),
             onPressed: () {
+            /* when move alwasys take destination latlang for polyline last location,
+              when move button click it will always take latest latlang value 
+              because in map user taken Longpress latlng value is also updated in same variable (location_move_marker) */
+              points.add(location_move_marker);
               moveLocation2();
             },
           ),
@@ -152,6 +172,7 @@ class _HomeState extends State<Home> {
           FloatingActionButton(
             child: Text("Back"),
             onPressed: () {
+              points.add(location2);
               backToPreviousLocation();
             },
           ),
