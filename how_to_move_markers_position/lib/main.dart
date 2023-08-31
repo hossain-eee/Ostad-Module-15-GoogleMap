@@ -74,7 +74,8 @@ class _HomeState extends State<Home> {
         icon: BitmapDescriptor.defaultMarker,
       ),
     );
-
+    // camera/focus move according to latlng with latest location where move to marker
+    mapController!.animateCamera(CameraUpdate.newLatLng(location_move_marker));
     setState(() {
       // Refresh the map to show the new location for location 2
     });
@@ -93,6 +94,10 @@ class _HomeState extends State<Home> {
       infoWindow: const InfoWindow(title: "Marker 2"),
       icon: BitmapDescriptor.defaultMarker,
     ));
+
+    //camera focus according to latlng also back with marker
+    mapController!.animateCamera(
+        CameraUpdate.newLatLng(location2));
     setState(() {
       // Refresh the map to show markers
     });
@@ -115,13 +120,13 @@ class _HomeState extends State<Home> {
           print("get map latlng by click : $latLng");
         },
         onLongPress: (LatLng latLng) {
+          /* marker move to user selected locatoin (LongPress on map to get location where want to move" */
           isLongPressToGetLatLngFromMap = true;
           location_move_marker = latLng;
           print("get map latlng by LongPress : $latLng");
-          if(mounted){
-            setState(() {
-              
-            });
+
+          if (mounted) {
+            setState(() {});
           }
         },
         markers: markers,
