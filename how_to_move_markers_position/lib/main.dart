@@ -66,13 +66,30 @@ class _HomeState extends State<Home> {
       Marker(
         markerId: MarkerId('location2'),
         // position: LatLng(27.661838, 85.308543),
-        position: location_move_marker,
+        position: location_move_marker, // marker create at new location
         icon: BitmapDescriptor.defaultMarker,
       ),
     );
 
     setState(() {
       // Refresh the map to show the new location for location 2
+    });
+  }
+
+  //back marker at previous position 
+    void backToPreviousLocation() {
+      /* Delete marker two which id is location2 and again create it at new position */
+    markers.removeWhere((Marker) =>
+        Marker.markerId.value ==
+        'location2'); //remove/delete marker which id is location2
+    //now add new marker at define postion, this marker will take 2nd marker id becasue we are delete and again creating second marker
+    markers.add(Marker(markerId: MarkerId('location2'),
+    position: location2, //marker create at previous location
+    infoWindow: const InfoWindow(title: "Marker 2"),
+        icon: BitmapDescriptor.defaultMarker,
+    ));
+    setState(() {
+      // Refresh the map to show markers
     });
   }
 
@@ -102,13 +119,26 @@ class _HomeState extends State<Home> {
           });
         },
       ),
-       floatingActionButton: FloatingActionButton(
-        //marker move to new position
-         child: Text("Move"),
-         onPressed: () {
-           moveLocation2();
-         },
-       ),
+         floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          //move to new position
+          FloatingActionButton(
+            child: Text("Move"),
+            onPressed: () {
+              moveLocation2();
+            },
+          ),
+          //back to previous positon
+           FloatingActionButton(
+            child: Text("Back"),
+            onPressed: () {
+              backToPreviousLocation();
+            },
+            
+          ),
+        ],
+      ),
     );
   }
 }
