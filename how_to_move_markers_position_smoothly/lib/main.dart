@@ -25,11 +25,12 @@ class _HomeState extends State<Home> {
   Set<Marker> markers = Set();
   Set<Polyline> polylines = {};
   // LatLng initialLocation = LatLng(27.6602292, 85.308027);
-  LatLng initialLocation = LatLng(0.0,0.0);
+  LatLng initialLocation = LatLng(0.0, 0.0);
   // LatLng movingLocation = LatLng(27.6602292, 85.308027);
-  LatLng movingLocation = LatLng(0.0,0.0);
+  LatLng movingLocation = LatLng(0.0, 0.0);
   List<LatLng> poly_points = [];
   Location location = Location();
+  LocationData? listenLocation;
   // Number of steps for moving marker
   int numSteps = 50;
   int delayMilliseconds = 50;
@@ -40,8 +41,6 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    
-    
     _getCurrentLocation();
     // addMarkers();
     super.initState();
@@ -71,32 +70,40 @@ class _HomeState extends State<Home> {
     }
 
     try {
-       Location.instance.changeSettings(
-      distanceFilter: 5, //meter
-      // accuracy:LocationAccuracy.navigation, // walking track
-      accuracy: LocationAccuracy.high,
-      interval: 3000, // 3 second
-    );
+      Location.instance.changeSettings(
+        distanceFilter: 5, //meter
+        // accuracy:LocationAccuracy.navigation, // walking track
+        accuracy: LocationAccuracy.high,
+        interval: 1000, // 3 second
+      );
+         Location.instance.onLocationChanged.listen((LocationData locationData) {
+          print("User listen Location: ${locationData.latitude}, ${locationData.longitude}");
+          setState(() {
+            
+          });
+        });
       LocationData locationData = await location.getLocation();
       initialLocation = LatLng(locationData.latitude!, locationData.longitude!);
       movingLocation = LatLng(locationData.latitude!, locationData.longitude!);
-      /*    location_move_marker =
-          LatLng(locationData.latitude!, locationData.longitude!); */
 
       addMarkers();
       currentPosition = [initialLocation.latitude, initialLocation.longitude];
-      poly_points.add(movingLocation);//initial first location or starting point of polyline
-      
+      poly_points.add(
+          movingLocation); //initial first location or starting point of polyline
+
       // camera focus on initial location
       mapController!.animateCamera(CameraUpdate.newLatLng(
           LatLng(locationData.latitude!, locationData.longitude!)));
       print("Location 1: $initialLocation");
       print("Location 2: $movingLocation");
+
       setState(() {});
     } catch (error) {
       print("Error getting location: $error");
     }
   }
+
+
 
   addMarkers() {
     markers.add(
