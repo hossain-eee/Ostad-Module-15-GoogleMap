@@ -84,8 +84,8 @@ class _HomeState extends State<Home> {
     //add plyline
     Polylines.add(Polyline(
       polylineId: PolylineId('polyline1'),
-      color: Colors.blue,
-      width: 3,
+      color: Colors.deepOrange,
+      width: 4,
       /* points: [
         location2,
         location_move_marker,
