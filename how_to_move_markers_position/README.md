@@ -18,3 +18,11 @@
 ![focus](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/945b09fa-62d9-4487-bbf0-9294b8ccfec8)
 ![focus2](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/de7891db-f9f1-414b-9e54-5d2881113290)
 ![focus3](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/bfb6c048-0220-405c-a659-d7bcddd88a83)
+
+
+### Polyline draw with marker move
+![poly1](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/bee5482e-c83f-4203-bbb9-d8c259794230)
+![poly2](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/75aebbd5-11a7-46a2-a68c-aac6ed5bbee3)
+![poly3](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/54613a2e-009f-4a3f-a7f8-3e020d788a1c)
+![poly4](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/6c493b12-0742-43ab-bb5a-d71776b5c3a2)
+![poly5](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/4f0eefa9-2955-4740-9c62-0235669265ae)
