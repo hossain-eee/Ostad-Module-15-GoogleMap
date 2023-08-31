@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,21 +26,62 @@ class _HomeState extends State<Home> {
   // Set<Marker> markers = {};//
   Set<Polyline> Polylines = {};
 
-  LatLng location1 = LatLng(27.6602292, 85.308027);
-  LatLng location2 = LatLng(27.6599592, 85.3102498);
-  LatLng location_move_marker = LatLng(
-      27.67831505697596, 85.29788810759783); //marker move to this location
+  LatLng location1 = LatLng(0.0, 0.0);
+  LatLng location2 = LatLng(0.0, 0.0);
+  LatLng location_move_marker = LatLng(0.0, 0.0); //marker move to this location
   bool isLongPressToGetLatLngFromMap = false;
-  List<LatLng> points =
-      []; //list for polyline location latlng store, to show all the marker movement point by polyline
-  bool isMarkerBackToInitialPosition =
-      false; // by this flag true, remove previous polyline data
+  //list for polyline location latlng store, to show all the marker movement point by polyline
+  List<LatLng> points = [];
+  // by this flag true, remove previous polyline data
+  bool isMarkerBackToInitialPosition = false;
+  Location location = Location();
   @override
   void initState() {
-    points
-        .add(location2); //initial first location or starting point of polyline
-    addMarkers();
+   
+    _getCurrentLocation();
     super.initState();
+  }
+
+  Future<void> _getCurrentLocation() async {
+    //this permission part is taken from location package (readme)
+bool _serviceEnabled;
+PermissionStatus _permissionGranted;
+LocationData _locationData;
+
+_serviceEnabled = await location.serviceEnabled();
+if (!_serviceEnabled) {
+  _serviceEnabled = await location.requestService();
+  if (!_serviceEnabled) {
+    return;
+  }
+}
+
+_permissionGranted = await location.hasPermission();
+if (_permissionGranted == PermissionStatus.denied) {
+  _permissionGranted = await location.requestPermission();
+  if (_permissionGranted != PermissionStatus.granted) {
+    return;
+  }
+}
+
+    try {
+      LocationData locationData = await location.getLocation();
+      location1 = LatLng(locationData.latitude!, locationData.longitude!);
+      location2 = LatLng(locationData.latitude!, locationData.longitude!);
+      location_move_marker =
+          LatLng(locationData.latitude!, locationData.longitude!);
+
+      addMarkers();
+       points
+        .add(location2); //initial first location or starting point of polyline
+      mapController!.animateCamera(CameraUpdate.newLatLng(
+          LatLng(locationData.latitude!, locationData.longitude!)));
+      print("Location 1: $location1");
+      print("Location 2: $location2");
+      setState(() {});
+    } catch (error) {
+      print("Error getting location: $error");
+    }
   }
 
   addMarkers() {
@@ -84,7 +126,7 @@ class _HomeState extends State<Home> {
     //add plyline
     Polylines.add(Polyline(
       polylineId: PolylineId('polyline1'),
-      color: Colors.deepOrange,
+      color: Colors.blue,
       width: 4,
       /* points: [
         location2,
@@ -166,10 +208,9 @@ class _HomeState extends State<Home> {
               //when marker back then remove previous latlng data except initial or starting latlng which is location2 or markar initila position positoin, unless if user again move then again draw polyline with previous polyline
               if (isMarkerBackToInitialPosition == true && points.length > 1) {
                 points.removeRange(1, points.length);
-                isMarkerBackToInitialPosition = false;//after operation make it false again, unless it will remaining true
-                setState(() {
-                  
-                });
+                isMarkerBackToInitialPosition =
+                    false; //after operation make it false again, unless it will remaining true
+                setState(() {});
               }
               /* when move alwasys take destination latlang for polyline last location,
               when move button click it will always take latest latlang value 
