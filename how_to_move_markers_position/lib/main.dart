@@ -75,13 +75,12 @@ class _HomeState extends State<Home> {
       addMarkers();
       points.add(
           location2); //initial first location or starting point of polyline
-      // camera focus on initial location    
+      // camera focus on initial location
       mapController!.animateCamera(CameraUpdate.newLatLng(
           LatLng(locationData.latitude!, locationData.longitude!)));
       print("Location 1: $location1");
       print("Location 2: $location2");
       setState(() {});
-
     } catch (error) {
       print("Error getting location: $error");
     }
@@ -106,6 +105,15 @@ class _HomeState extends State<Home> {
       ),
     );
 
+//add circle to the first location
+    circle.add(Circle(
+      circleId: CircleId('circle1'),
+      center: location1,
+      radius: 100,
+      fillColor: Colors.blue.withOpacity(0.2),
+      strokeColor: Colors.blue,
+      strokeWidth: 2,
+    ));
     setState(() {
       // Refresh the map to show markers
     });
@@ -137,11 +145,20 @@ class _HomeState extends State<Home> {
       ], */
       points: points,
     ));
-    
-   
-      // camera/focus move according to latlng with latest location where move to marker
-      mapController!
-          .animateCamera(CameraUpdate.newLatLng(location_move_marker));
+
+    //add circle to the every move point of marker
+    for (int i = 0; i < points.length; i++) {
+      circle.add(Circle(
+        circleId: CircleId('${points.length}'),
+        center: points[i],
+        radius: 100,
+        fillColor: Colors.blue.withOpacity(0.2),
+        strokeColor: Colors.blue,
+        strokeWidth: 2,
+      ));
+    }
+    // camera/focus move according to latlng with latest location where move to marker
+    mapController!.animateCamera(CameraUpdate.newLatLng(location_move_marker));
     setState(() {
       // Refresh the map to show the new location for location 2
     });
@@ -197,6 +214,7 @@ class _HomeState extends State<Home> {
         markers: markers,
         polylines: Polylines,
         mapType: MapType.normal,
+        circles: circle,
         onMapCreated: (controller) {
           // Do something when the map is created
           setState(() {
@@ -216,6 +234,7 @@ class _HomeState extends State<Home> {
                 points.removeRange(1, points.length);
                 isMarkerBackToInitialPosition =
                     false; //after operation make it false again, unless it will remaining true
+               
                 setState(() {});
               }
               /* when move alwasys take destination latlang for polyline last location,
