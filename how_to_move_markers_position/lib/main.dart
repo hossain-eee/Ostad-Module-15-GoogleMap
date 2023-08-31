@@ -234,7 +234,11 @@ class _HomeState extends State<Home> {
                 points.removeRange(1, points.length);
                 isMarkerBackToInitialPosition =
                     false; //after operation make it false again, unless it will remaining true
-               
+                
+                //remove all circle except first that means circle of first locaton
+                 CircleId firstCircleId = circle.first.circleId;
+                 circle.removeWhere((circles) => circles.circleId != firstCircleId);
+                
                 setState(() {});
               }
               /* when move alwasys take destination latlang for polyline last location,
