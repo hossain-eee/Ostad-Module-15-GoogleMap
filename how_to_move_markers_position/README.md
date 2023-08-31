@@ -1,6 +1,11 @@
 # how_to_move_markers_position
 Here, create a map which has two marker, second marker is move one latlng to another by user selected (by longPress on map) latlng, basically here remove second marker and again create it in new latlng point. get user location, and set polyline when marker is move accoriding to marker latlng and use circle at latlng where marke is moved.
 
+Learning site :
+https://www.fluttercampus.com/guide/361/move-marker-position-on-google-map/
+chatgpt
+
+
 #### Initial Position
 ![initial position](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/2455b7ec-2618-4d7f-aa19-62bf8804ec70)
 
