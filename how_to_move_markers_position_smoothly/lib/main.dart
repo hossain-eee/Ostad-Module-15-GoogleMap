@@ -22,10 +22,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   GoogleMapController? mapController;
   Set<Marker> markers = Set();
-
+  Set<Polyline> polylines = {};
   LatLng initialLocation = LatLng(27.6602292, 85.308027);
   LatLng movingLocation = LatLng(27.6602292, 85.308027);
-
+  List<LatLng> poly_points = [];
   // Number of steps for moving marker
   int numSteps = 50;
   int delayMilliseconds = 50;
@@ -36,6 +36,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
+    poly_points.add(initialLocation);
     currentPosition = [initialLocation.latitude, initialLocation.longitude];
     addMarkers();
     super.initState();
@@ -46,7 +47,10 @@ class _HomeState extends State<Home> {
       Marker(
         markerId: MarkerId('initialMarker'),
         position: initialLocation,
-        infoWindow: InfoWindow(title: "Marker 1",snippet: '${initialLocation.latitude}, ${initialLocation.longitude},'),
+        infoWindow: InfoWindow(
+            title: "Marker 1",
+            snippet:
+                '${initialLocation.latitude}, ${initialLocation.longitude},'),
         icon: BitmapDescriptor.defaultMarker,
       ),
     );
@@ -55,7 +59,10 @@ class _HomeState extends State<Home> {
       Marker(
         markerId: MarkerId('movingMarker'),
         position: movingLocation,
-        infoWindow: InfoWindow(title: "Marker 2",snippet: '${movingLocation.latitude}, ${movingLocation.longitude},'),
+        infoWindow: InfoWindow(
+            title: "Marker 2",
+            snippet:
+                '${movingLocation.latitude}, ${movingLocation.longitude},'),
         icon: BitmapDescriptor.defaultMarker,
       ),
     );
@@ -65,13 +72,16 @@ class _HomeState extends State<Home> {
 
   moveMarkerToLocation(LatLng targetLocation) {
     movingLocation = targetLocation;
+    
 /* This calculates how much the marker's latitude (up and down on the map) 
 should change in each step to reach the target location. 
 It takes the difference between the target latitude and the current latitude, 
 then divides it by the total number of steps. */
-    stepLat = (movingLocation.latitude - currentPosition[0]) / numSteps; // to understand, let 0.5
-    stepLng = (movingLocation.longitude - currentPosition[1]) / numSteps; //to understand, let 0.3
-    currentStep = 0;//indicate,marker is just starting to move.
+    stepLat = (movingLocation.latitude - currentPosition[0]) /
+        numSteps; // to understand, let 0.5
+    stepLng = (movingLocation.longitude - currentPosition[1]) /
+        numSteps; //to understand, let 0.3
+    currentStep = 0; //indicate,marker is just starting to move.
     moveMarker();
   }
 
@@ -79,26 +89,36 @@ then divides it by the total number of steps. */
     /* The current latitude of the marker is updated by adding the calculated latitude step. */
     currentPosition[0] += stepLat!; // let 24.5968 + 0.5,
     currentPosition[1] += stepLng!; // // let 89.5968 + 0.3
+  poly_points.add(LatLng(currentPosition[0], currentPosition[1])); // get latlng from user selected point via currentPosition
 
     /* A new LatLng object is created using the updated latitude and longitude. */
     var newPosition = LatLng(currentPosition[0], currentPosition[1]);
 
-  /* The existing moving marker is removed from the markers set. */
+    /* The existing moving marker is removed from the markers set. */
     markers.removeWhere((marker) => marker.markerId.value == 'movingMarker');
     /* A new marker is added to the markers set with the updated position. This creates the effect of the marker moving. */
     markers.add(
       Marker(
         markerId: MarkerId('movingMarker'),
         position: newPosition,
-         infoWindow: InfoWindow(title: "Marker 2 new",snippet: '${newPosition.latitude}, ${newPosition.longitude},'),
+        infoWindow: InfoWindow(
+            title: "Marker 2 new",
+            snippet: '${newPosition.latitude}, ${newPosition.longitude},'),
         icon: BitmapDescriptor.defaultMarker,
       ),
     );
 
+    //add Polyline
+    polylines.add(Polyline(
+      polylineId: PolylineId('value'),
+      points: poly_points,
+      color: Colors.blueAccent,
+      width: 5,
+    ));
     setState(() {});
 
     if (currentStep != numSteps) {
-      //we want 5o step to complete the move, so in previous we devided, start and target lat and lng by 50(numSteps) to make small number and add that to the currentPosition, so now we are ready to go 50 step
+      //we want 50 step to complete the move, so in previous we devided, start and target lat and lng by 50(numSteps) to make small number and add that to the currentPosition, so now we are ready to go 50 step to complete move
       currentStep++;
       Future.delayed(Duration(milliseconds: delayMilliseconds), () {
         /* A small delay is added to make the marker move smoothly. 
@@ -123,6 +143,7 @@ then divides it by the total number of steps. */
           zoom: 14.0,
         ),
         markers: markers,
+        polylines: polylines,
         mapType: MapType.normal,
         onMapCreated: (controller) {
           setState(() {
