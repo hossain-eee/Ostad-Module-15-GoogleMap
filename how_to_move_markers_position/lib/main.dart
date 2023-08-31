@@ -30,8 +30,10 @@ class _HomeState extends State<Home> {
   LatLng location_move_marker = LatLng(
       27.67831505697596, 85.29788810759783); //marker move to this location
   bool isLongPressToGetLatLngFromMap = false;
-  List<LatLng> points = []; //list for polyline location latlng store, to show all the marker movement point by polyline
-
+  List<LatLng> points =
+      []; //list for polyline location latlng store, to show all the marker movement point by polyline
+  bool isMarkerBackToInitialPosition =
+      false; // by this flag true, remove previous polyline data
   @override
   void initState() {
     points
@@ -161,7 +163,15 @@ class _HomeState extends State<Home> {
           FloatingActionButton(
             child: Text("Move"),
             onPressed: () {
-            /* when move alwasys take destination latlang for polyline last location,
+              //when marker back then remove previous latlng data except initial or starting latlng which is location2 or markar initila position positoin, unless if user again move then again draw polyline with previous polyline
+              if (isMarkerBackToInitialPosition == true && points.length > 1) {
+                points.removeRange(1, points.length);
+                isMarkerBackToInitialPosition = false;//after operation make it false again, unless it will remaining true
+                setState(() {
+                  
+                });
+              }
+              /* when move alwasys take destination latlang for polyline last location,
               when move button click it will always take latest latlang value 
               because in map user taken Longpress latlng value is also updated in same variable (location_move_marker) */
               points.add(location_move_marker);
@@ -174,6 +184,8 @@ class _HomeState extends State<Home> {
             onPressed: () {
               points.add(location2);
               backToPreviousLocation();
+              isMarkerBackToInitialPosition = true;
+              setState(() {});
             },
           ),
         ],
