@@ -1,4 +1,4 @@
-# how_to_move_markers_position
+![rp2](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/21c42f48-b383-412e-b533-4f8d0cc39525)# how_to_move_markers_position
 Here, create a map which has two marker, second marker is move one latlng to another by user selected (by longPress on map) latlng, basically here remove second marker and again create it in new latlng point. get user location, and set polyline when marker is move accoriding to marker latlng and use circle at latlng where marke is moved.
 
 Learning site :
@@ -7,40 +7,56 @@ chatgpt
 
 
 #### Initial Position
-![initial position](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/2455b7ec-2618-4d7f-aa19-62bf8804ec70)
+
+![initial position](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/8c63e29a-b6fc-47a1-ae08-f326a172e683)
 
 #### Moving to new position
-![move position](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/74df7ff0-0eaf-4464-96fa-40368f119c56)
+
+![move position](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/1c638273-7cc2-4c9f-a40a-cdc6f5f06f07)
+
 
 #### Back to previous position
 
-![back to pevious position](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/f015f407-853f-4e0e-9786-8e235a137613)
+![back to pevious position](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/4fe68ea1-d827-430c-8979-14d0ac2f31ac)
+
 
 #### Custom location movement 
-![custom move 1](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/d0cf7a60-bd0f-4931-a05f-33d017845bc2)
-![custom move 2](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/bbd3280b-ce81-4d65-84fb-23cc66c154bd)
+
+![custom move 1](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/523e24a3-d126-4825-a6e0-3bd6d146af8e)
+
+![custom move 2](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/a9cb7bb4-19cf-4f57-8f11-4f22aa9b742a)
 
 #### Focus marker 2(moveable marker)
-![focus](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/945b09fa-62d9-4487-bbf0-9294b8ccfec8)
-![focus2](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/de7891db-f9f1-414b-9e54-5d2881113290)
-![focus3](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/bfb6c048-0220-405c-a659-d7bcddd88a83)
+
+
+![focus](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/43e30d0e-6bfb-4e87-a144-e5b55508d64c)
+![focus2](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/9cbcef2f-864f-4ee1-9c38-edc8eb94c02e)
+![focus3](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/c181f5ef-6a92-4dc9-acea-c2f043882588)
 
 
 #### Polyline draw with marker move
-![poly1](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/bee5482e-c83f-4203-bbb9-d8c259794230)
-![poly2](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/75aebbd5-11a7-46a2-a68c-aac6ed5bbee3)
-![poly3](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/54613a2e-009f-4a3f-a7f8-3e020d788a1c)
-![poly4](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/6c493b12-0742-43ab-bb5a-d71776b5c3a2)
-![poly5](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/4f0eefa9-2955-4740-9c62-0235669265ae)
+
+![poly1](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/c3f9e18d-8076-49f8-8088-e2ec41866bec)
+![poly2](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/e2269b93-2d11-4d2c-b74e-a116d9897422)
+![poly3](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/bd6b961c-ac92-4c57-9561-be046fa0f9aa)
+![poly4](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/54beb0ab-95bd-493f-9d65-316f19a47468)
+![poly5](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/687b114b-149d-41f2-9dde-2bd2c90c9ce9)
 
 #### After move marker when user back then again move then start new polyline
-![rp1](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/61215898-2e7b-4127-93c0-46a679e8ef0f)
-![rp2](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/343be75d-b9c9-4850-8f75-d9b34af54dea)
-![rp3](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/4a654f18-2257-4927-bf55-5534cde6fb9e)
-![rp5](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/19bb6910-40ce-40b3-b1dc-cf40d8e2bf55)
-![rp6](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/417e8fc1-df7e-460f-bbf1-5f566cecd31d)
+![rp1](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/588b32e1-9ca7-483d-aaf6-70ce7235ae51)
+
+
+![rp2](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/1bd6c2b1-5bb1-435f-b551-9fa19e0361a2)
+
+![rp3](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/a7c916c9-1647-41d1-8f7d-86fb014299ba)
+
+![rp5](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/073876f7-f3d2-4fbe-ac65-13bb2e531f90)
+
+![rp6](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/9b997962-373a-4344-b157-07338e411082)
 
 #### Circle
 
 ![circle1](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/9a465014-edc2-4004-8d88-1e88cd0fe211)
 ![circle2](https://github.com/hossain-eee/Ostad-Module-15-GoogleMap/assets/101991583/6f860080-b8a0-4bb1-9acf-bdd2240fdd39)
+
+
